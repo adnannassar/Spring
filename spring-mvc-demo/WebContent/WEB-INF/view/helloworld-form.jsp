@@ -7,7 +7,7 @@
 </head>
 <body>
 	<form action="processForm" method="get">
-	<input type="text"  name="studentname" placeholder="what's your name?"/>
+	<input type="text"  name="studentName" placeholder="what's your name?"/>
 	<input type="submit"/>		
 	</form>
 </body>
