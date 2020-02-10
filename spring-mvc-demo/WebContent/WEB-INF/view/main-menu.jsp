@@ -5,10 +5,13 @@
 	<title>MVC</title>
 </head>
 <body>
-<h2>Spring mvc Demo Home Page</h2>
+<h2>Spring MVC Demo Home Page</h2>
 <hr>
-<a href="showForm">Hello World Form</a>
+<a href="hello/showForm">Hello World Form</a>
+<hr>
+<a href="student/showForm">Student Form</a>
+<hr>
+<a href="customer/showForm">Customer Form</a>
 </body>
-	
-<footer>@Copyright: Adnan Nassar 2020</footer>
+<hr>
 </html>
