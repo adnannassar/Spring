@@ -1,6 +1,5 @@
 package com.adnan.hibernate.demo;
 
-import java.nio.channels.SeekableByteChannel;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
