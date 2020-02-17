@@ -1,6 +1,5 @@
 package com.adnan.hibernate.demo;
 
-import java.nio.channels.SeekableByteChannel;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,31 +10,39 @@ public class ReadStudentDemo {
 	static SessionFactory factory;
 
 	public static void main(String[] args) {
-		
-		
-		
-		System.out.println("Before Deleting : ");
-		// updating the object with the id "2"
-		if (updateStudentsLastName(2, "Nassar")) {
-			List<Student> theStudents = getAllStudents();
-			if (theStudents != null) {
-				theStudents.forEach(a -> System.out.println(a));
-			} else {
-				System.out.println("NULL");
-			}
-		}
-		
-		
-		System.out.println("After Deleting : ");
-		if (deleteStudent(6)) {
-			List<Student> theStudents = getAllStudents();
-			if (theStudents != null) {
-				theStudents.forEach(a -> System.out.println(a));
-			} else {
-				System.out.println("NULL");
-			}
+		System.out.println("Reading from DATABASE: ");
+		List<Student> theStudents = getAllStudents();
+		if (theStudents != null) {
+			theStudents.forEach(a -> System.out.println(a));
+		} else {
+			System.out.println("NULL");
 		}
 	
+		
+		/*
+		System.out.println("After Update : ");
+		// updating the object with the id "2"
+		if (updateStudentsLastName(2, "Nassar")) {
+			List<Student> theStudents1 = getAllStudents();
+			if (theStudents1 != null) {
+				theStudents1.forEach(a -> System.out.println(a));
+			} else {
+				System.out.println("NULL");
+			}
+		}
+		*/
+		
+		/*
+		System.out.println("After Deleting : ");
+		if (deleteStudent(6)) {
+			List<Student> theStudents2 = getAllStudents();
+			if (theStudents2 != null) {
+				theStudents2.forEach(a -> System.out.println(a));
+			} else {
+				System.out.println("NULL");
+			}
+		}
+	*/
 	}
 
 	static Session createSession() {
@@ -150,11 +157,11 @@ public class ReadStudentDemo {
 				session.beginTransaction();
 
 				// 1.a : retrieving the object then delete it before save it agai
-				//Student s1 = session.get(Student.class, id);
-				//session.delete(s1);
+				// Student s1 = session.get(Student.class, id);
+				// session.delete(s1);
 
 				// 1.b : or using query
-				 session.createQuery("delete from Student where ID =  " + id).executeUpdate();
+				session.createQuery("delete from Student where ID =  " + id).executeUpdate();
 
 				// 2 : commetting
 				session.getTransaction().commit();
