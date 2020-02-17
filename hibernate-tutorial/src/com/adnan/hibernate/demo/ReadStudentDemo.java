@@ -1,5 +1,6 @@
 package com.adnan.hibernate.demo;
 
+import java.nio.channels.SeekableByteChannel;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,21 +11,31 @@ public class ReadStudentDemo {
 	static SessionFactory factory;
 
 	public static void main(String[] args) {
-
-		Student s1 = getStudentByID(1);
-		if (s1 != null) {
-			System.out.println("Retvied Object : " + s1);
-		}
-
+		
+		
+		
+		System.out.println("Before Deleting : ");
 		// updating the object with the id "2"
-		if (updateStudentsLastName(2, "Nassaro") == true) {
-
+		if (updateStudentsLastName(2, "Nassar")) {
 			List<Student> theStudents = getAllStudents();
 			if (theStudents != null) {
 				theStudents.forEach(a -> System.out.println(a));
+			} else {
+				System.out.println("NULL");
 			}
 		}
-
+		
+		
+		System.out.println("After Deleting : ");
+		if (deleteStudent(6)) {
+			List<Student> theStudents = getAllStudents();
+			if (theStudents != null) {
+				theStudents.forEach(a -> System.out.println(a));
+			} else {
+				System.out.println("NULL");
+			}
+		}
+	
 	}
 
 	static Session createSession() {
@@ -78,13 +89,13 @@ public class ReadStudentDemo {
 			// but first we need to start a transaction
 			session.beginTransaction();
 			// retrive all students in the data base
-			// List<Student> theStudents = session.createQuery("from
-			// Student").getResultList();
+			List<Student> theStudents = session.createQuery("from Student").getResultList();
 
 			// retrive students from the data base with some conditions
-			List<Student> theStudents = session
-					.createQuery("from Student s where s.lastName = 'Nassar'" + " or s.firstName = 'Yasin'")
-					.getResultList();
+			// List<Student> theStudents = session
+			// .createQuery("from Student s where s.lastName = 'Nassar'" + " or s.firstName
+			// = 'Yasin'")
+			// .getResultList();
 
 			// commit the transaction
 			session.getTransaction().commit();
@@ -109,8 +120,43 @@ public class ReadStudentDemo {
 				// starting the session
 				session.beginTransaction();
 
-				// 1 : retrieving the object then edit it before save it again
-				getStudentByID(id).setLastName(lastName);
+				// 1.a : retrieving the object then edit it before save it again
+				// session.get(Student.class, id).setLastName(lastName);
+
+				// 1.b : or using query
+				session.createQuery("update Student set lastName = 'NASSAROWSKI' where ID =  " + id).executeUpdate();
+
+				// 2 : commetting
+				session.getTransaction().commit();
+
+				return true;
+
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			} finally {
+				factory.close();
+			}
+		} else {
+			return false;
+		}
+		return false;
+	}
+
+	static boolean deleteStudent(int id) {
+		Session session = createSession();
+		if (session != null) {
+			try {
+				// starting the session
+				session.beginTransaction();
+
+				// 1.a : retrieving the object then delete it before save it agai
+				//Student s1 = session.get(Student.class, id);
+				//session.delete(s1);
+
+				// 1.b : or using query
+				 session.createQuery("delete from Student where ID =  " + id).executeUpdate();
+
+				// 2 : commetting
 				session.getTransaction().commit();
 
 				return true;
