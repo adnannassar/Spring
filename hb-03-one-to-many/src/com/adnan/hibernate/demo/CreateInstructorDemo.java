@@ -29,9 +29,9 @@ public class CreateInstructorDemo {
 			// 2 : get Instructor from Database
 			Instructor instructor = session.get(Instructor.class, 2);
 			// 3: create some courses
-			Course c1 = new Course("Air Guitar - the Ultimate Guide");
-			Course c2 = new Course("The Pinball - Master Class");
-			Course c3 = new Course("Air Guitar - Advanced");
+			Course c1 = new Course("Air Guitar2 - the Ultimate Guide");
+			Course c2 = new Course("The Pinball2 - Master Class");
+			Course c3 = new Course("Air Guitar2 - Advanced");
 			// 4: add courses to Instructor
 			instructor.add(c1);
 			instructor.add(c2);
