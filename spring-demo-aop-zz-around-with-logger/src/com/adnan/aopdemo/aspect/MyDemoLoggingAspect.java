@@ -1,6 +1,7 @@
 package com.adnan.aopdemo.aspect;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -12,14 +13,17 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-
 import com.adnan.aopdemo.Account;
+
 
 @Aspect
 @Component
 @Order(1)
 public class MyDemoLoggingAspect {
-
+	
+	
+	private Logger myLogger = Logger.getLogger(getClass().getName());
+	
 	@Before("com.adnan.aopdemo.aspect.AopExpressions.forDaoPackageNoGettersAndSetters()")
 	public void beforeAddAcountAdvice(JoinPoint theJoinpoint) {
 		System.out.println("======>>> Executing @Before advice on method");
