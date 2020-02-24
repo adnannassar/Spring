@@ -11,8 +11,25 @@ public class MyDemoLoggingAspect {
 	
 	
 	// lets's start with an @Before advice
-	@Before("execution(public void addAccount())")
+	@Before("execution(public void com.adnan.aopdemo.dao.AccountDAO.addAccount())")
 	public void beforeAddAcountAdvice() {
 		System.out.println("\n======> Executing @Before advice on addAccount()");
 	}
+	
+
+	@Before("execution(public int summe(java.lang.Integer,..))")
+	public void beforeSumme() {
+		System.out.println("\n======> Executing @Before advice on summe(java.lang.Integer)");
+	}
+	
+	
+	@Before("execution(* add*(com.adnan.aopdemo.Account))")
+	public void beforeSummeAnyType() {
+		System.out.println("\n======> Executing @Before advice on add(Account)");
+	}
+
+	// this means match with all methods in the package
+	// @Before("execution(* com.adnan.aopdemo.*.*(..))")
+
+	
 }
