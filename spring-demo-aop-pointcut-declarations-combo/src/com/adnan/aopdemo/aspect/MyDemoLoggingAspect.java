@@ -14,13 +14,26 @@ public class MyDemoLoggingAspect {
 	@Pointcut("execution(* com.adnan.aopdemo.dao.*.*(..))")
 	public void forDaoPackage() {}
 	
+	// declare a @Pointcut for setters
+	@Pointcut("execution(* com.adnan.aopdemo.dao.*.set*(..))")
+	public void forSetters() {}
+	
+	// declare a @Pointcut for getters
+	@Pointcut("execution(* com.adnan.aopdemo.dao.*.get*(..))")
+	public void forGetters() {}
+	
+	// create @Pointcut : include package ... exclude getters / setters
+	@Pointcut("forDaoPackage() && !(forGetters() || forSetters())")
+	public void forDaoPackageNoGettersAndSetters() {}
+	
+	
 	// lets's start with an @Before advice
-	@Before("forDaoPackage()")
+	@Before("forDaoPackageNoGettersAndSetters()")
 	public void beforeAddAcountAdvice() {
 		System.out.println("\n======>>> Executing @Before advice on method");
 	}
 	
-	@Before("forDaoPackage()")
+	@Before("forDaoPackageNoGettersAndSetters()")
 	public void beforeApiAnalytics() {
 		System.out.println("======>>> Performing API analytics");
 	}

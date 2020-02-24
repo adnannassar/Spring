@@ -22,6 +22,15 @@ public class MainDemoApp {
 		
 		theAccountDAO.addAccount(new Account());
 		
+		
+		System.out.println("\ncalling the setters and the getters....");
+		// call the setters
+		theAccountDAO.setName("Adnan");
+		theAccountDAO.setServiceCode("silver");
+		// call the getter
+		String name = theAccountDAO.getName();
+		String code = theAccountDAO.getServiceCode();
+		
 		// close the context
 		context.close();
 	}
