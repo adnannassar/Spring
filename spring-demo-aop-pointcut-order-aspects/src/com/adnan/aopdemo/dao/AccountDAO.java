@@ -10,12 +10,12 @@ public class AccountDAO {
 	private String name, serviceCode;
 
 	public void addAccount() {
-		System.out.println(getClass() + ": DOING MY DB WORK: ADDING AN ACCOUNT");
+		System.out.println(getClass() + ": DOING MY DB WORK: ADDING AN ACCOUNT\n");
 
 	}
 
 	public void addAccount(Account a) {
-		System.out.println(getClass() + ": DOING MY DB WORK: ADDING AN ACCOUNT");
+		System.out.println(getClass() + ": DOING MY DB WORK: ADDING AN ACCOUNT\n");
 
 	}
 

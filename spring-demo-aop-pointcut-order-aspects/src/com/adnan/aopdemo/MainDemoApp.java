@@ -18,7 +18,7 @@ public class MainDemoApp {
 		// call the method
 		theAccountDAO.addAccount();
 		theMembershipDAP.addAccount();
-		System.out.println("The result is : "+theMembershipDAP.summe(10,20));
+		System.out.println("The result is : "+theMembershipDAP.summe(10,20)+"\n");
 		
 		theAccountDAO.addAccount(new Account());
 		
