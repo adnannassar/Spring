@@ -3,9 +3,11 @@ package com.adnan.aopdemo.aspect;
 import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.core.annotation.Order;
@@ -75,4 +77,23 @@ public class MyDemoLoggingAspect {
 		}
 	}
 
+	@Around("execution(* com.adnan.aopdemo.service.*.getFortune(..))")
+	public Object aroundGetFortune(ProceedingJoinPoint theProceedingJoinPoint) throws Throwable {
+		System.out.println("\n======>>> Executing @Around advice on method");
+		// display the method signature
+		System.out.println("\t  The methode signature : " + theProceedingJoinPoint.getSignature());
+
+		// get begin time stamp
+		long begin = System.currentTimeMillis();
+		// now, let's execute the method
+		Object result = theProceedingJoinPoint.proceed();
+		// get end time stamp
+		long end = System.currentTimeMillis();
+		// compute duration and display t
+		long duration = end - begin;
+		System.out.println("\n======> Duration : " + duration / 1000.0 + " seconds");
+		
+		// "result" here will be the String that the getFortune() returns
+		return result;
+	}
 }
