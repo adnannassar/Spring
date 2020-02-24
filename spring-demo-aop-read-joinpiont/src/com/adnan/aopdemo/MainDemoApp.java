@@ -20,7 +20,7 @@ public class MainDemoApp {
 		theMembershipDAP.addAccount();
 		System.out.println("The result is : "+theMembershipDAP.summe(10,20)+"\n");
 		
-		theAccountDAO.addAccount(new Account());
+		theAccountDAO.addAccount(new Account("Adnan" ,"100") , true);
 		
 		
 		System.out.println("\ncalling the setters and the getters....");
