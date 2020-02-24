@@ -1,16 +1,21 @@
 package com.adnan.aopdemo;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Account {
 	private String name;
 	private String level;
 
-	
-	
 	public Account(String name, String level) {
-		super();
 		this.name = name;
 		this.level = level;
 	}
+
+	// add a new method: findAccounts()
+
+	
 
 	public String getName() {
 		return name;
@@ -32,5 +37,5 @@ public class Account {
 	public String toString() {
 		return "Account [name=" + name + ", level=" + level + "]";
 	}
-	
+
 }
