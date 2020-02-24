@@ -13,8 +13,10 @@ public class AccountDAO {
 
 	private String name, serviceCode;
 
-	public List<Account> findAccounts() {
-
+	public List<Account> findAccounts(boolean tripWire) {
+		if (tripWire) {
+			throw new RuntimeException("EROOOOOORRRR !!!");
+		}
 		// create a sample account and add them to the list and return the list
 		return new ArrayList<Account>(
 				Arrays.asList(new Account("Adnan", "100"), new Account("Hamadeh", "80"), new Account("Badari", "50")));

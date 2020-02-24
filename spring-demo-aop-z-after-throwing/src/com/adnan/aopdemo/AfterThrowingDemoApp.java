@@ -10,7 +10,7 @@ import com.adnan.aopdemo.dao.AccountDAO;
 import com.adnan.aopdemo.dao.MembershipDAO;
 
 
-public class AfterReturningDemoApp {
+public class AfterThrowingDemoApp {
 
 	public static void main(String[] args) {
 		// read spring config java class 
@@ -21,7 +21,14 @@ public class AfterReturningDemoApp {
 		
 		
 		// call the method to find the accounts
-		List<Account> theAccounts = theAccountDAO.findAccounts();
+		List<Account> theAccounts  = null;
+		try {
+			boolean tripWire = true;
+			theAccounts = theAccountDAO.findAccounts( tripWire);
+		}catch (Exception e) {
+			System.out.println("\n\nmain Program ... caught exception : " + e);
+		}
+	
 		System.out.println("The final Result: ");
 		System.out.println(theAccounts);
 		// close the context
